@@ -30,6 +30,38 @@ def is_present(my_list, element, cmp_function):
         count = -1
     return count
 
+def add_first(my_list, element):
+    node = {"info": element, "next": None}
+    
+    if my_list["size"] == 0:
+        my_list["first"] = node
+        my_list["last"] = node
+        my_list["size"] += 1
+    else:
+        node["next"] = my_list["first"]
+        my_list["first"] = node
+        my_list["size"] += 1
+    return my_list
 
+def add_last(my_list,element):
+    
+    node = {"info": element, "next": None}
+    if my_list["size"] == 0:
+        my_list["first"] = node
+        my_list["last"] = node
+        my_list["size"] += 1
+    else:
+        my_list["last"]["next"] = node
+        my_list["last"] = node
+        my_list["size"] += 1
+                   
+    return my_list
+
+def size(my_list):
+    return my_list["size"]
+
+def first_element(my_list):
+        return my_list["first"]["info"]
+        
 
 
