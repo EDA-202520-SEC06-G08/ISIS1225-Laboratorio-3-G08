@@ -21,15 +21,29 @@ def is_present(my_list, element, cmp_function) :
     return -1
 
 def add_first(my_list, element):
-        
     if my_list["size"] == 0:
-        my_list.append(element)
-        return my_list
+        my_list["elements"].append(element)
+        my_list["size"] = len(my_list["elements"])
     else:
         x = [element]
-        for i in my_list:
+        for i in my_list["elements"]:
             x.append(i)
-    return x
- 
+        my_list["elements"] = x
+        my_list["size"] = len(my_list["elements"])
+    return my_list
 
+def add_last(my_list, element):
+    if my_list["size"] == 0:
+        my_list["elements"].append(element)
+        my_list["size"] = len(my_list["elements"])
+    else:
+        my_list["elements"].append(element)
+        my_list["size"] = len(my_list["elements"])
+    return my_list
+
+def size(my_list):
+    return len(my_list["elements"])
+
+def first_element(my_list):
+    return my_list["elements"][0]
 
