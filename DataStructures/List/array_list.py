@@ -1,5 +1,4 @@
 def new_list():
-    
     newlist = {
         "elements" :[],
         "size" : 0
@@ -8,10 +7,8 @@ def new_list():
 
 def get_element(my_list, index):
     return my_list["elements"] [index]
-
 def is_present(my_list, element, cmp_function) :
     size = my_list["size"]
-    
     if size > 0:
         keyexist = False
         for keypos in range(0, size):
@@ -27,7 +24,6 @@ def is_empty(my_list):
     return my_list["size"] == 0
 
 def add_first(my_list, element):
-    
     if my_list["size"] == 0:
         my_list["elements"].append(element)
         my_list["size"] = len(my_list["elements"])
@@ -37,18 +33,15 @@ def add_first(my_list, element):
             x.append(i)
         my_list["elements"] = x
         my_list["size"] = len(my_list["elements"])
-        
     return my_list
 
 def add_last(my_list, element):
-    
     if my_list["size"] == 0:
         my_list["elements"].append(element)
         my_list["size"] = len(my_list["elements"])
     else:
         my_list["elements"].append(element)
         my_list["size"] = len(my_list["elements"])
-        
     return my_list
 
 def size(my_list):
