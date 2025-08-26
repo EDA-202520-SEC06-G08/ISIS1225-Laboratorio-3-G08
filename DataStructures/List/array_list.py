@@ -26,9 +26,7 @@ def add_first(my_list, element):
         my_list["size"] += 1
     else:
         x = [element]
-        for i in my_list["elements"]:
-            x.append(i)
-        my_list["elements"] = x
+        my_list["elements"] = x + my_list["elements"]
         my_list["size"] = len(my_list["elements"])
     return my_list
 

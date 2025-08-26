@@ -54,9 +54,11 @@ def new_logic():
     }
 
     catalog['books'] = lt.new_list()
-    # TODO Implemente la inicialización de la lista de autores
-    # TODO Implemente la inicialización de la lista de tags
-    # TODO Implemente la inicialización de la lista de asociación de libros y tags
+    catalog["authors"] = lt.new_list()
+    catalog["tags"] = lt.new_list()
+    catalog["book_tags"] = lt.new_list()
+    
+    
     return catalog
 
 
@@ -70,12 +72,14 @@ def load_data(catalog):
     """
     start_time = getTime()
     books, authors = load_books(catalog)
-    # TODO Complete la carga de los tags
-    # TODO Complete la carga de los book_tags
-    # TODO Añada los parámetros de retoro necesarios
+    tags = load_tags(catalog)
+    book_tags = load_books_tags(catalog)
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
-    return books, authors, tiempo_transcurrido
+    return books, authors, tiempo_transcurrido, start_time, tags, book_tags
+
+
+
 
 
 
@@ -100,8 +104,13 @@ def load_tags(catalog):
 
     :return: El número de tags cargados
     """
-    # TODO Implementar la carga de los tags
-    pass
+    tagsfile = data_dir + 'GoodReads/tags.csv'
+    input_file = csv.DictReader(open(tagsfile, encoding='utf-8'))
+    for tag in input_file:
+        add_tag(catalog,tag)
+    return tag_size(catalog)
+
+    
 
 
 def load_books_tags(catalog):
@@ -112,8 +121,12 @@ def load_books_tags(catalog):
 
     :return: El número de book_tags cargados
     """
-    # TODO Implementar la carga de los book_tags
-    pass
+    booktagsfile  = data_dir + 'GoodReads/book_tags.csv'
+    input_file = csv.DictReader(open(booktagsfile, encoding='utf-8'))
+    for book_tag in input_file:
+        add_book_tag(catalog,book_tag)
+    return book_tag_size(catalog)
+    
 
 
 # Funciones de consulta sobre el catálogo
