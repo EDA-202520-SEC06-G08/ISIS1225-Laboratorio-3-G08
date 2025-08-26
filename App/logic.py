@@ -153,7 +153,11 @@ def get_best_book(catalog):
     """
     start_time = getTime()
     best_book = None
-    # TODO Implementar la función del mejor libro por rating
+    rating = -1
+    for book in catalog["books"]:
+        if book["rating"] > rating:
+            rating = book["rating"]
+            best_book = book 
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return best_book, tiempo_transcurrido
@@ -170,7 +174,9 @@ def count_books_by_tag(catalog, tag):
     """
     start_time = getTime()
     resultado = 0
-    # TODO Implementar la función de conteo de libros por tag
+    for book in catalog["books"]:
+        if tag in book["tags"]:
+            resultado += 1 
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return resultado, tiempo_transcurrido
@@ -268,8 +274,7 @@ def author_size(catalog):
 
     :return: El número de autores en el catálogo
     """
-    # TODO Implementar la función de tamaño de autores
-    pass
+    return lt.size(catalog["authors"])
 
 
 def tag_size(catalog):
@@ -280,8 +285,8 @@ def tag_size(catalog):
 
     :return: El número de tags en el catálogo
     """
-    # TODO Implementar la función de tamaño de tags
-    pass
+    return lt.size(catalog["tags"])
+
 
 
 def book_tag_size(catalog):
@@ -292,8 +297,7 @@ def book_tag_size(catalog):
 
     :return: El número de book_tags en el catálogo
     """
-    # TODO Implementar la función de tamaño de book_tags
-    pass
+    return lt.size(catalog["book_tags"])
 
 
 # Funciones utilizadas para comparar elementos dentro de una lista
