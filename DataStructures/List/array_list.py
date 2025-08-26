@@ -27,13 +27,13 @@ def is_empty(my_list):
 def add_first(my_list, element):
     if my_list["size"] == 0:
         my_list["elements"].append(element)
-        my_list["size"] = len(my_list["elements"])
+        my_list["size"]  += 1
     else:
         x = [element]
         for i in my_list["elements"]:
             x.append(i)
         my_list["elements"] = x
-        my_list["size"] = len(my_list["elements"])
+        my_list["size"] += 1
     return my_list
 
 def add_last(my_list, element):
@@ -42,11 +42,11 @@ def add_last(my_list, element):
         my_list["size"] = len(my_list["elements"])
     else:
         my_list["elements"].append(element)
-        my_list["size"] = len(my_list["elements"])
+        my_list["size"] += 1
     return my_list
 
 def size(my_list):
-    return len(my_list["elements"])
+    return my_list["size"]
 
 def first_element(my_list):
     return my_list["elements"][0]
@@ -56,23 +56,20 @@ def last_element(my_list):
 
 def delete_element(my_list, pos):
     if my_list["size"] > 0 and pos >= 0 and pos < my_list["size"]:
-        element = my_list["elements"][pos]
-        my_list["elements"].pop(element)
-        my_list["size"] = len(my_list["elements"])
+        my_list["elements"].pop(pos)   
+        my_list["size"] -= 1  
         return my_list
 
 def remove_first(my_list):
     if my_list["size"] > 0:
-        element = my_list["elements"][0]
-        my_list["elements"].pop(element)
-        my_list["size"] = len(my_list["elements"])
+        my_list["elements"].pop(0)
+        my_list["size"] -= 1
         return my_list
 
 def remove_last(my_list):
     if my_list["size"] > 0:
-        element = my_list["elements"][my_list["size"]-1]
-        my_list["elements"].pop(element)
-        my_list["size"] = len(my_list["elements"])
+        my_list["elements"].pop()     
+        my_list["size"] -= 1
         return my_list
 
 def insert_element(my_list, element, pos):
@@ -84,7 +81,7 @@ def insert_element(my_list, element, pos):
         for j in range(pos, my_list["size"]):
             x.append(my_list["elements"][j])
         my_list["elements"] = x
-        my_list["size"] = len(my_list["elements"])
+        my_list["size"] += 1
         return my_list
 
 def change_info(my_list, pos, new_info):
