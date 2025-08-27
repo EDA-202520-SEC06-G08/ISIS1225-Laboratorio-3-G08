@@ -49,28 +49,41 @@ def size(my_list):
     return my_list["size"]
 
 def first_element(my_list):
+    if my_list["size"] == 0:
+        raise IndexError("list index out of range")
     return my_list["elements"][0]
 
 def last_element(my_list):
+    if my_list["size"] == 0:
+        raise IndexError("list index out of range")
     return my_list["elements"][my_list["size"]-1]
 
 def delete_element(my_list, pos):
     if my_list["size"] > 0 and pos >= 0 and pos < my_list["size"]:
         my_list["elements"].pop(pos)   
         my_list["size"] -= 1  
+        
         return my_list
+    else:
+        raise IndexError("list index out of range")
 
 def remove_first(my_list):
+    if my_list["size"] == 0:
+        raise IndexError("list index out of range")
+    
     if my_list["size"] > 0:
-        my_list["elements"].pop(0)
+        element = my_list["elements"].pop(0)
         my_list["size"] -= 1
-        return my_list
+        return element
 
 def remove_last(my_list):
+    if my_list["size"] == 0:
+        raise IndexError("list index out of range")
+    
     if my_list["size"] > 0:
-        my_list["elements"].pop()     
+        element = my_list["elements"].pop()
         my_list["size"] -= 1
-        return my_list
+        return element
 
 def insert_element(my_list, element, pos):
     if pos >= 0 and pos <= my_list["size"]:
