@@ -27,10 +27,10 @@
 import csv
 import os
 import time
-from DataStructures.list import array_list as lt
+from DataStructures.List import array_list as lt
 
 
-# TODO Importar la librería para el manejo de listas
+# Importar la librería para el manejo de listas
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
