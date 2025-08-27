@@ -76,8 +76,7 @@ def load_data(catalog):
     book_tags = load_books_tags(catalog)
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
-    return books, authors, tiempo_transcurrido, start_time, tags, book_tags
-
+    return books, authors, tags, book_tags, tiempo_transcurrido
 
 
 
@@ -135,12 +134,16 @@ def get_books_by_author(catalog, author_name):
     """
     Retrona los libros de un autor
     """
-    pos_author = lt.is_present(
-        catalog['authors'], author_name, compare_authors)
+    start_time = getTime()
+    pos_author = lt.is_present(catalog['authors'], author_name, compare_authors)
     if pos_author > 0:
         author = lt.get_element(catalog['authors'], pos_author)
-        return author
-    return None
+    else:
+        author = None
+    end_time = getTime()
+    tiempo_transcurrido = deltaTime(end_time, start_time)
+
+    return author, tiempo_transcurrido
 
 
 def get_best_book(catalog):
@@ -154,10 +157,14 @@ def get_best_book(catalog):
     start_time = getTime()
     best_book = None
     rating = -1
-    for book in catalog["books"]:
-        if book["rating"] > rating:
-            rating = book["rating"]
+    
+    size = lt.size(catalog["books"])
+    for pos in range(size):
+        book = lt.get_element(catalog["books"], pos)
+        if float(book["average_rating"]) > rating:   
+            rating = float(book["average_rating"])
             best_book = book 
+    
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return best_book, tiempo_transcurrido
@@ -174,13 +181,14 @@ def count_books_by_tag(catalog, tag):
     """
     start_time = getTime()
     resultado = 0
-    for book in catalog["books"]:
-        if tag in book["tags"]:
-            resultado += 1 
+    size = lt.size(catalog["book_tags"])
+    for pos in range(size):
+        book_tag = lt.get_element(catalog["book_tags"], pos)
+        if book_tag["tag_id"] == tag:  
+            resultado += 1
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return resultado, tiempo_transcurrido
-
 
 # Funciones para agregar informacion al catalogo
 

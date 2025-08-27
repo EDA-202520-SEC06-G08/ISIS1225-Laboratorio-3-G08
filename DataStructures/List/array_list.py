@@ -8,15 +8,18 @@ def new_list():
 def get_element(my_list, index):
     return my_list["elements"] [index]
 
-def is_present(my_list, element, cmp_function) :
+def is_present(my_list, element, cmp_function):
     size = my_list["size"]
+    keyexist = False   
+    keypos = -1        
     if size > 0:
-        keyexist = False
-        for keypos in range(0, size):
-            info = my_list["elements"] [keypos]
+        for pos in range(size):
+            info = my_list["elements"][pos]
             if cmp_function(element, info) == 0:
                 keyexist = True
+                keypos = pos
                 break
+
     if keyexist:
         return keypos
     return -1
